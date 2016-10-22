@@ -15,7 +15,7 @@ import numpy as np
 # Variables
 
 _url = 'https://api.projectoxford.ai/face/v1.0/detect'
-_key = ef9533a05ade426c90506d991ed62fba #Here you have to paste your primary key
+_key = 'ef9533a05ade426c90506d991ed62fba' #Here you have to paste your primary key
 _maxNumRetries = 10
 
 # HELPER FUNCTIONS
