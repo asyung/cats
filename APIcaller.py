@@ -114,5 +114,5 @@ if result is not None:
     #renderResultOnImage( result, img )
 
     ig, ax = plt.subplots(figsize=(15, 20))
-    ax.imshow( img )
+    #ax.imshow( urlImage )
     
