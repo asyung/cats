@@ -79,7 +79,7 @@ def renderResultOnImage( result, img ):
 
         faceLandmarks = currFace['faceLandmarks']
 
-        for _, currLandmark in faceLandmarks.items():
+        #for _, currLandmark in faceLandmarks.items():
             #cv2.circle( img, (int(currLandmark['x']),int(currLandmark['y'])), color = (0,255,0), thickness= -1, radius = 1 )
 
     for currFace in result:
