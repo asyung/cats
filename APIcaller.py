@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import time 
 import requests
-import cv2
+#import cv2
 import operator
 import numpy as np
 
