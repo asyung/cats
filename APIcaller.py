@@ -5,6 +5,7 @@ import operator
 import numpy as np
 from __future__ import print_function
 
+# Key: ef9533a05ade426c90506d991ed62fba
 # Import library to display results
 import matplotlib.pyplot as plt
 %matplotlib inline 
@@ -13,7 +14,7 @@ import matplotlib.pyplot as plt
 # Variables
 
 _url = 'https://api.projectoxford.ai/face/v1.0/detect'
-_key = None #Here you have to paste your primary key
+_key = ef9533a05ade426c90506d991ed62fba #Here you have to paste your primary key
 _maxNumRetries = 10
 
 # HELPER FUNCTIONS
@@ -108,33 +109,6 @@ if result is not None:
     # Load the original image, fetched from the URL
     arr = np.asarray( bytearray( requests.get( urlImage ).content ), dtype=np.uint8 )
     img = cv2.cvtColor( cv2.imdecode( arr, -1 ), cv2.COLOR_BGR2RGB )
-
-    renderResultOnImage( result, img )
-
-    ig, ax = plt.subplots(figsize=(15, 20))
-    ax.imshow( img )
-    
-# Load raw image file into memory
-pathToFileInDisk = r'D:\tmp\identification1.jpg'
-with open( pathToFileInDisk, 'rb' ) as f:
-    data = f.read()
-
-# Face detection parameters
-params = { 'returnFaceAttributes': 'age,gender', 
-           'returnFaceLandmarks': 'true'} 
-
-headers = dict()
-headers['Ocp-Apim-Subscription-Key'] = _key
-headers['Content-Type'] = 'application/octet-stream'
-
-json = None
-
-result = processRequest( json, data, headers, params )
-
-if result is not None:
-    # Load the original image from disk
-    data8uint = np.fromstring( data, np.uint8 ) # Convert string to an unsigned int array
-    img = cv2.cvtColor( cv2.imdecode( data8uint, cv2.IMREAD_COLOR ), cv2.COLOR_BGR2RGB )
 
     renderResultOnImage( result, img )
 
