@@ -8,7 +8,7 @@ from __future__ import print_function
 # Key: ef9533a05ade426c90506d991ed62fba
 # Import library to display results
 import matplotlib.pyplot as plt
-%matplotlib inline 
+get_ipython().magic('matplotlib inline')
 # Display images within Jupyter
 
 # Variables
