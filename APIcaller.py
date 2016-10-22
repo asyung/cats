@@ -91,8 +91,8 @@ def renderResultOnImage( result, img ):
         
  #Detect faces from an image retrieved via URL
  # URL direction to image
-urlImage = 'https://raw.githubusercontent.com/Microsoft/ProjectOxford-ClientSDK/master/Face/Windows/Data/identification1.jpg'
-
+#urlImage = 'https://raw.githubusercontent.com/Microsoft/ProjectOxford-ClientSDK/master/Face/Windows/Data/identification1.jpg'
+urlImage = 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Official_portrait_of_Barack_Obama.jpg'
 # Face detection parameters
 params = { 'returnFaceLandmarks': 'true'} 
 
@@ -105,6 +105,9 @@ data = None
 
 result = processRequest( json, data, headers, params )
 
+def returnResult():
+	return result[0]["faceRectangle"]
+
 if result is not None:
     # Load the original image, fetched from the URL
     arr = np.asarray( bytearray( requests.get( urlImage ).content ), dtype=np.uint8 )
@@ -115,9 +118,3 @@ if result is not None:
     ig, ax = plt.subplots(figsize=(15, 20))
     #ax.imshow( urlImage )
 
-    x = result[0]
-    for attribute, value in x.iteritems():
-	print (attribute)#, value)
-
-
-    print (result[0]["faceRectangle"]['width'])    
