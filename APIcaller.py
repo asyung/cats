@@ -94,8 +94,7 @@ def renderResultOnImage( result, img ):
 urlImage = 'https://raw.githubusercontent.com/Microsoft/ProjectOxford-ClientSDK/master/Face/Windows/Data/identification1.jpg'
 
 # Face detection parameters
-params = { 'returnFaceAttributes': 'age,gender', 
-           'returnFaceLandmarks': 'true'} 
+params = { 'returnFaceLandmarks': 'true'} 
 
 headers = dict()
 headers['Ocp-Apim-Subscription-Key'] = _key
