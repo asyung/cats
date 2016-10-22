@@ -73,21 +73,21 @@ def renderResultOnImage( result, img ):
 
     for currFace in result:
         faceRectangle = currFace['faceRectangle']
-        cv2.rectangle( img,(faceRectangle['left'],faceRectangle['top']),
-                           (faceRectangle['left']+faceRectangle['width'], faceRectangle['top'] + faceRectangle['height']),
-                       color = (255,0,0), thickness = 1 )
+        #cv2.rectangle( img,(faceRectangle['left'],faceRectangle['top']),
+                           #(faceRectangle['left']+faceRectangle['width'], faceRectangle['top'] + faceRectangle['height']),
+                      # color = (255,0,0), thickness = 1 )
 
         faceLandmarks = currFace['faceLandmarks']
 
         for _, currLandmark in faceLandmarks.items():
-            cv2.circle( img, (int(currLandmark['x']),int(currLandmark['y'])), color = (0,255,0), thickness= -1, radius = 1 )
+            #cv2.circle( img, (int(currLandmark['x']),int(currLandmark['y'])), color = (0,255,0), thickness= -1, radius = 1 )
 
     for currFace in result:
         faceRectangle = currFace['faceRectangle']
         faceAttributes = currFace['faceAttributes']
 
         textToWrite = "%c (%d)" % ( 'M' if faceAttributes['gender']=='male' else 'F', faceAttributes['age'] )
-        cv2.putText( img, textToWrite, (faceRectangle['left'],faceRectangle['top']-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1 )
+        #cv2.putText( img, textToWrite, (faceRectangle['left'],faceRectangle['top']-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1 )
         
  #Detect faces from an image retrieved via URL
  # URL direction to image
@@ -109,9 +109,9 @@ result = processRequest( json, data, headers, params )
 if result is not None:
     # Load the original image, fetched from the URL
     arr = np.asarray( bytearray( requests.get( urlImage ).content ), dtype=np.uint8 )
-    img = cv2.cvtColor( cv2.imdecode( arr, -1 ), cv2.COLOR_BGR2RGB )
+    #img = cv2.cvtColor( cv2.imdecode( arr, -1 ), cv2.COLOR_BGR2RGB )
 
-    renderResultOnImage( result, img )
+    #renderResultOnImage( result, img )
 
     ig, ax = plt.subplots(figsize=(15, 20))
     ax.imshow( img )
