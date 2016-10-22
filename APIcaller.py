@@ -1,9 +1,10 @@
+from __future__ import print_function
+
 import time 
 import requests
 import cv2
 import operator
 import numpy as np
-from __future__ import print_function
 
 # Key: ef9533a05ade426c90506d991ed62fba
 # Import library to display results
