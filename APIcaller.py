@@ -8,7 +8,7 @@ import numpy as np
 
 # Key: ef9533a05ade426c90506d991ed62fba
 # Import library to display results
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #get_ipython().magic('matplotlib inline')
 # Display images within Jupyter
 
