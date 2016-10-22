@@ -114,4 +114,10 @@ if result is not None:
 
     ig, ax = plt.subplots(figsize=(15, 20))
     #ax.imshow( urlImage )
-    
+
+    x = result[0]
+    for attribute, value in x.iteritems():
+	print (attribute)#, value)
+
+
+    print (result[0]["faceRectangle"]['width'])    
