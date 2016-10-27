@@ -1,24 +1,13 @@
 from __future__ import print_function
-
 import time 
 import requests
-#import cv2
-import operator
-import numpy as np
 
-# Key: ef9533a05ade426c90506d991ed62fba
-# Import library to display results
-import matplotlib.pyplot as plt
-#get_ipython().magic('matplotlib inline')
-# Display images within Jupyter
-
-# Variables
-
+# Variables: API URL, Microsft Face API Key 
 _url = 'https://api.projectoxford.ai/face/v1.0/detect'
 _key = 'ef9533a05ade426c90506d991ed62fba' #Here you have to paste your primary key
 _maxNumRetries = 10
 
-# HELPER FUNCTIONS
+# Helper function to call API
 def processRequest( json, data, headers, params ):
 
     """
@@ -66,55 +55,19 @@ def processRequest( json, data, headers, params ):
         
     return result
     
-    
-def renderResultOnImage( result, img ):
-    
-    """Display the obtained results onto the input image"""
+# save Face detection parameters
+def returnResult(urlImage):
+	json = {'url': urlImage}
+	data = None
+	params = { 'returnFaceAttributes': 'age', 'returnFaceLandmarks': 'true'}
+	headers = dict()
+	headers['Ocp-Apim-Subscription-Key'] = _key
+	headers['Content-Type'] = 'application/json'
+	
+	result = processRequest(json, data, headers, params)
+	return result	
 
-    for currFace in result:
-        faceRectangle = currFace['faceRectangle']
-        #cv2.rectangle( img,(faceRectangle['left'],faceRectangle['top']),
-                           #(faceRectangle['left']+faceRectangle['width'], faceRectangle['top'] + faceRectangle['height']),
-                      # color = (255,0,0), thickness = 1 )
 
-        faceLandmarks = currFace['faceLandmarks']
 
-        #for _, currLandmark in faceLandmarks.items():
-            #cv2.circle( img, (int(currLandmark['x']),int(currLandmark['y'])), color = (0,255,0), thickness= -1, radius = 1 )
 
-    for currFace in result:
-        faceRectangle = currFace['faceRectangle']
-        faceAttributes = currFace['faceAttributes']
-
-        textToWrite = "%c (%d)" % ( 'M' if faceAttributes['gender']=='male' else 'F', faceAttributes['age'] )
-        #cv2.putText( img, textToWrite, (faceRectangle['left'],faceRectangle['top']-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1 )
-        
- #Detect faces from an image retrieved via URL
- # URL direction to image
-#urlImage = 'https://raw.githubusercontent.com/Microsoft/ProjectOxford-ClientSDK/master/Face/Windows/Data/identification1.jpg'
-urlImage = 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Official_portrait_of_Barack_Obama.jpg'
-# Face detection parameters
-params = { 'returnFaceLandmarks': 'true'} 
-
-headers = dict()
-headers['Ocp-Apim-Subscription-Key'] = _key
-headers['Content-Type'] = 'application/json' 
-
-json = { 'url': urlImage }
-data = None
-
-result = processRequest( json, data, headers, params )
-
-def returnResult():
-	return result[0]["faceRectangle"]
-
-if result is not None:
-    # Load the original image, fetched from the URL
-    arr = np.asarray( bytearray( requests.get( urlImage ).content ), dtype=np.uint8 )
-    #img = cv2.cvtColor( cv2.imdecode( arr, -1 ), cv2.COLOR_BGR2RGB )
-
-    #renderResultOnImage( result, img )
-
-    ig, ax = plt.subplots(figsize=(15, 20))
-    #ax.imshow( urlImage )
 
